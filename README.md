@@ -1,28 +1,26 @@
----
+n8n Random – Serviço + Conector Custom -  ONFLY TESTE
 
-n8n Random – Serviço + Conector Custom
+Projeto com dois componentes principais:
 
-Projeto composto por:
+⚡ randomnumberwn8n – serviço Fastify/TypeScript para gerar números aleatórios.
 
-randomnumberwn8n – serviço Fastify/TypeScript para gerar números aleatórios.
-
-n8n-custom-random – conector custom para o n8n chamado Random com a operação True Random Number Generator (usa random.org).
+🔌 n8n-custom-random – conector n8n chamado Random com a operação True Random Number Generator (usa random.org).
 
 
 
 ---
 
-Requisitos
+📋 Requisitos
 
-Docker Desktop com docker e docker compose.
+🐳 Docker Desktop
 
-Node.js 20+ e npm (apenas se for desenvolver/compilar localmente).
+🟢 Node.js 20+ e npm (apenas se for desenvolver ou compilar localmente)
 
 
 
 ---
 
-Configuração
+⚙️ Configuração
 
 Crie um arquivo .env na raiz:
 
@@ -32,14 +30,14 @@ POSTGRES_DB=n8n
 N8N_ENCRYPTION_KEY=<chave forte>
 APP_PORT=4000
 
-Para gerar uma chave:
+Gerar uma chave forte:
 
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
 
 ---
 
-Subir com Docker
+🚀 Subir com Docker
 
 Na raiz do repositório:
 
@@ -48,17 +46,19 @@ docker compose up -d
 
 Serviços disponíveis:
 
-n8n: http://localhost:5678
+🌐 n8n UI → http://localhost:5678
 
-Serviço Fastify: http://localhost:4000/random?min=1&max=10
+🎯 Serviço Fastify → http://localhost:4000/random?min=1&max=10
 
 
-O conector custom é carregado automaticamente no n8n (menu Nodes → Random).
+> O conector custom é carregado automaticamente no n8n (menu Nodes → Random).
+
+
 
 
 ---
 
-Desenvolvimento local (opcional)
+💻 Desenvolvimento local (opcional)
 
 Compilar TypeScript no host:
 
@@ -78,7 +78,7 @@ cd ..
 
 ---
 
-Testes
+🧪 Testes
 
 Se houver testes configurados:
 
@@ -95,31 +95,31 @@ cd ..
 
 ---
 
-Estrutura rápida
+🗂️ Estrutura rápida
 
 docker-compose.yml
 .env
-randomnumberwn8n/      # serviço Fastify
-n8n-custom-random/     # conector custom (montado em /home/node/.n8n/custom)
+randomnumberwn8n/      ⚡ serviço Fastify
+n8n-custom-random/     🔌 conector custom (montado em /home/node/.n8n/custom)
 
 
 ---
 
-Uso no n8n
+🎯 Uso no n8n
 
-No editor do n8n:
-
-1. Adicione o node Random.
+1. ➕ Crie um workflow e adicione o node Random.
 
 
-2. Preencha Min e Max.
+2. 🔢 Preencha Min e Max.
 
 
-3. Execute → retorna { value, min, max, source: "random.org" }.
+3. ▶️ Execute → retorna:
 
 
+
+{ "value": 17, "min": 1, "max": 60, "source": "random.org" }
 
 
 ---
 
-Pronto! Com isso o n8n, o Postgres e o conector custom estarão prontos para uso em poucos comandos.
+Pronto! Em poucos comandos você tem n8n, Postgres, o serviço Fastify e o conector custom funcionando.
